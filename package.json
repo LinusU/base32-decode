@@ -1,6 +1,6 @@
 {
   "name": "base32-decode",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "license": "MIT",
   "repository": "LinusU/base32-decode",
   "scripts": {
