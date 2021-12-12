@@ -46,6 +46,7 @@ module.exports = function base32Decode (input, variant) {
       break
     case 'Crockford':
       alphabet = CROCKFORD
+      input = input.replace(/-+|([*~$=u]$)/ig, '')
       break
     default:
       throw new Error('Unknown base32 variant: ' + variant)

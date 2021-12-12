@@ -72,9 +72,19 @@ var testCases = [
   ['Crockford', '666f6f626172', 'CSQPYRKIE8'],
   ['Crockford', '666f6f626172', 'csqpyrk1e8'],
   ['Crockford', '666f6f626172', 'csqpyrkle8'],
-  ['Crockford', '666f6f626172', 'csqpyrkie8']
+  ['Crockford', '666f6f626172', 'csqpyrkie8'],
+  ['Crockford', '666f6f626172', 'csq-pyr---kle8--'],
+  ['Crockford', '666f6f626172', 'csqpyrkie8*'],
+  ['Crockford', '666f6f626172', 'csqpyrkie8~'],
+  ['Crockford', '666f6f626172', 'csqpyrkie8$'],
+  ['Crockford', '666f6f626172', 'csqpyrkie8='],
+  ['Crockford', '666f6f626172', 'csqpyrkie8u'],
+  ['Crockford', '666f6f626172', 'csqpyrkie8U']
 ]
 
 testCases.forEach(function (testCase) {
   assert(isEqual(base32Decode(testCase[2], testCase[0]), hexToArrayBuffer(testCase[1])))
 })
+
+assert.throws(function () { base32Decode('&', 'RFC4648-HEX') })
+assert.throws(function () { base32Decode('&', 'Crockford') })
