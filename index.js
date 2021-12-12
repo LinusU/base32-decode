@@ -1,11 +1,30 @@
-var RFC4648 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'
-var RFC4648_HEX = '0123456789ABCDEFGHIJKLMNOPQRSTUV'
-var CROCKFORD = '0123456789ABCDEFGHJKMNPQRSTVWXYZ'
+function createAlphabet (str) {
+  var lookup = {}
+  for (var i = 0; i < str.length; i++) {
+    lookup[str.charAt(i)] = i
+  }
+  return lookup
+}
+
+var RFC4648 = createAlphabet('ABCDEFGHIJKLMNOPQRSTUVWXYZ234567')
+var RFC4648_HEX = createAlphabet('0123456789ABCDEFGHIJKLMNOPQRSTUV')
+var CROCKFORD = Object.assign(
+  createAlphabet('0123456789ABCDEFGHJKMNPQRSTVWXYZ'),
+  createAlphabet('0123456789ABCDEFGHJKMNPQRSTVWXYZ'.toLowerCase()),
+  {
+    'o': 0,
+    'O': 0,
+    'i': 1,
+    'I': 1,
+    'l': 1,
+    'L': 1
+  }
+)
 
 function readChar (alphabet, char) {
-  var idx = alphabet.indexOf(char)
+  var idx = alphabet[char]
 
-  if (idx === -1) {
+  if (idx === undefined) {
     throw new Error('Invalid character found: ' + char)
   }
 
@@ -27,7 +46,6 @@ module.exports = function base32Decode (input, variant) {
       break
     case 'Crockford':
       alphabet = CROCKFORD
-      input = input.toUpperCase().replace(/O/g, '0').replace(/[IL]/g, '1')
       break
     default:
       throw new Error('Unknown base32 variant: ' + variant)

@@ -64,11 +64,15 @@ var testCases = [
   ['Crockford', '61', 'c4'],
   ['Crockford', '74657374', 'EHJQ6X0'],
   ['Crockford', '74657374', 'EHJQ6XO'],
+  ['Crockford', '74657374', 'ehjq6xo'],
   ['Crockford', '6c696e7573', 'DHMPWXBK'],
   ['Crockford', '6c696e7573', 'DhmPWXbK'],
   ['Crockford', '666f6f626172', 'CSQPYRK1E8'],
   ['Crockford', '666f6f626172', 'CSQPYRKLE8'],
-  ['Crockford', '666f6f626172', 'CSQPYRKIE8']
+  ['Crockford', '666f6f626172', 'CSQPYRKIE8'],
+  ['Crockford', '666f6f626172', 'csqpyrk1e8'],
+  ['Crockford', '666f6f626172', 'csqpyrkle8'],
+  ['Crockford', '666f6f626172', 'csqpyrkie8']
 ]
 
 testCases.forEach(function (testCase) {
