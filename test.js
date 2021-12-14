@@ -64,13 +64,27 @@ var testCases = [
   ['Crockford', '61', 'c4'],
   ['Crockford', '74657374', 'EHJQ6X0'],
   ['Crockford', '74657374', 'EHJQ6XO'],
+  ['Crockford', '74657374', 'ehjq6xo'],
   ['Crockford', '6c696e7573', 'DHMPWXBK'],
   ['Crockford', '6c696e7573', 'DhmPWXbK'],
   ['Crockford', '666f6f626172', 'CSQPYRK1E8'],
   ['Crockford', '666f6f626172', 'CSQPYRKLE8'],
-  ['Crockford', '666f6f626172', 'CSQPYRKIE8']
+  ['Crockford', '666f6f626172', 'CSQPYRKIE8'],
+  ['Crockford', '666f6f626172', 'csqpyrk1e8'],
+  ['Crockford', '666f6f626172', 'csqpyrkle8'],
+  ['Crockford', '666f6f626172', 'csqpyrkie8'],
+  ['Crockford', '666f6f626172', 'csq-pyr---kle8--'],
+  ['Crockford', '666f6f626172', 'csqpyrkie8*'],
+  ['Crockford', '666f6f626172', 'csqpyrkie8~'],
+  ['Crockford', '666f6f626172', 'csqpyrkie8$'],
+  ['Crockford', '666f6f626172', 'csqpyrkie8='],
+  ['Crockford', '666f6f626172', 'csqpyrkie8u'],
+  ['Crockford', '666f6f626172', 'csqpyrkie8U']
 ]
 
 testCases.forEach(function (testCase) {
   assert(isEqual(base32Decode(testCase[2], testCase[0]), hexToArrayBuffer(testCase[1])))
 })
+
+assert.throws(function () { base32Decode('&', 'RFC4648-HEX') })
+assert.throws(function () { base32Decode('&', 'Crockford') })
