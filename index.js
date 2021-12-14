@@ -46,8 +46,8 @@ module.exports = function base32Decode (input, variant) {
     bits += 5
 
     if (bits >= 8) {
-      output[index++] = (value >>> (bits - 8)) & 255
       bits -= 8
+      output[index++] = (value >>> bits) & 255
     }
   }
 
